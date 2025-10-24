@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pannellum Tour 0–53 (no loops)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <link rel="stylesheet" href="css/baruga.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+</head>
+<body>
+<div class="top-buttons">
+  <a href="index.html" class="back-home">Kembali ke Beranda</a>
+  <button class="minimap-btn" onclick="showMinimap()">Tampilkan Minimap</button>
+  <button id="toggleDragBtn" class="minimap-btn">Nonaktifkan Drag</button>
+</div>
+
+<!-- Modal Minimap -->
+<div id="minimapModal" class="minimap-modal" onclick="hideMinimap()">
+  <img src="images/minimap.jpg" alt="Minimap Virtual Tour" class="minimap-img">
+</div>
+
+<h3>Pannellum Virtual Tour (Scenes 0 → 53)</h3>
+<div id="panorama"></div>
+<div class="scenes">
+  <!-- Static scene buttons without any loop -->
+  <button onclick="viewer.loadScene('s0')">0</button>
+  <button onclick="viewer.loadScene('s1')">1</button>
+  <button onclick="viewer.loadScene('s2')">2</button>
+  <button onclick="viewer.loadScene('s3')">3</button>
+  <button onclick="viewer.loadScene('s4')">4</button>
+  <button onclick="viewer.loadScene('s5')">5</button>
+  <button onclick="viewer.loadScene('s6')">6</button>
+  <button onclick="viewer.loadScene('s7')">7</button>
+  <button onclick="viewer.loadScene('s8')">8</button>
+  <button onclick="viewer.loadScene('s9')">9</button>
+  <button onclick="viewer.loadScene('s10')">10</button>
+  <button onclick="viewer.loadScene('s11')">11</button>
+  <button onclick="viewer.loadScene('s12')">12</button>
+  <button onclick="viewer.loadScene('s13')">13</button>
+  <button onclick="viewer.loadScene('s14')">14</button>
+  <button onclick="viewer.loadScene('s15')">15</button>
+  <button onclick="viewer.loadScene('s16')">16</button>
+  <button onclick="viewer.loadScene('s17')">17</button>
+  <button onclick="viewer.loadScene('s18')">18</button>
+  <button onclick="viewer.loadScene('s19')">19</button>
+  <button onclick="viewer.loadScene('s20')">20</button>
+  <button onclick="viewer.loadScene('s21')">21</button>
+  <button onclick="viewer.loadScene('s22')">22</button>
+  <button onclick="viewer.loadScene('s23')">23</button>
+  <button onclick="viewer.loadScene('s24')">24</button>
+  <button onclick="viewer.loadScene('s25')">25</button>
+  <button onclick="viewer.loadScene('s26')">26</button>
+  <button onclick="viewer.loadScene('s27')">27</button>
+  <button onclick="viewer.loadScene('s28')">28</button>
+  <button onclick="viewer.loadScene('s29')">29</button>
+  <button onclick="viewer.loadScene('s30')">30</button>
+  <button onclick="viewer.loadScene('s31')">31</button>
+  <button onclick="viewer.loadScene('s32')">32</button>
+  <button onclick="viewer.loadScene('s33')">33</button>
+  <button onclick="viewer.loadScene('s34')">34</button>
+  <button onclick="viewer.loadScene('s35')">35</button>
+  <button onclick="viewer.loadScene('s36')">36</button>
+  <button onclick="viewer.loadScene('s37')">37</button>
+  <button onclick="viewer.loadScene('s38')">38</button>
+  <button onclick="viewer.loadScene('s39')">39</button>
+  <button onclick="viewer.loadScene('s40')">40</button>
+  <button onclick="viewer.loadScene('s41')">41</button>
+  <button onclick="viewer.loadScene('s42')">42</button>
+  <button onclick="viewer.loadScene('s43')">43</button>
+  <button onclick="viewer.loadScene('s44')">44</button>
+  <button onclick="viewer.loadScene('s45')">45</button>
+  <button onclick="viewer.loadScene('s46')">46</button>
+  <button onclick="viewer.loadScene('s47')">47</button>
+  <button onclick="viewer.loadScene('s48')">48</button>
+  <button onclick="viewer.loadScene('s49')">49</button>
+  <button onclick="viewer.loadScene('s50')">50</button>
+  <button onclick="viewer.loadScene('s51')">51</button>
+  <button onclick="viewer.loadScene('s52')">52</button>
+  <button onclick="viewer.loadScene('s53')">53</button>
+</div>
+
+<script>
+  // Multi-scene config (no loops)
+  var viewer = pannellum.viewer('panorama', {
+    "default": {
+      "firstScene": "s0",
+      "autoLoad": true,
+      "showControls": true
+    },
+    "scenes": {
+      "s0":  { "title": "Spot 0",  "type": "equirectangular", "panorama": "panos/image0.jpg" },
+      "s1":  { "title": "Spot 1",  "type": "equirectangular", "panorama": "panos/image1.jpg" },
+      "s2":  { "title": "Spot 2",  "type": "equirectangular", "panorama": "panos/image2.jpg" },
+      "s3":  { "title": "Spot 3",  "type": "equirectangular", "panorama": "panos/image3.jpg" },
+      "s4":  { "title": "Spot 4",  "type": "equirectangular", "panorama": "panos/image4.jpg" },
+      "s5":  { "title": "Spot 5",  "type": "equirectangular", "panorama": "panos/image5.jpg" },
+      "s6":  { "title": "Spot 6",  "type": "equirectangular", "panorama": "panos/image6.jpg" },
+      "s7":  { "title": "Spot 7",  "type": "equirectangular", "panorama": "panos/image7.jpg" },
+      "s8":  { "title": "Spot 8",  "type": "equirectangular", "panorama": "panos/image8.jpg" },
+      "s9":  { "title": "Spot 9",  "type": "equirectangular", "panorama": "panos/image9.jpg" },
+      "s10": { "title": "Spot 10", "type": "equirectangular", "panorama": "panos/image10.jpg" },
+      "s11": { "title": "Spot 11", "type": "equirectangular", "panorama": "panos/image11.jpg" },
+      "s12": { "title": "Spot 12", "type": "equirectangular", "panorama": "panos/image12.jpg" },
+      "s13": { "title": "Spot 13", "type": "equirectangular", "panorama": "panos/image13.jpg" },
+      "s14": { "title": "Spot 14", "type": "equirectangular", "panorama": "panos/image14.jpg" },
+      "s15": { "title": "Spot 15", "type": "equirectangular", "panorama": "panos/image15.jpg" },
+      "s16": { "title": "Spot 16", "type": "equirectangular", "panorama": "panos/image16.jpg" },
+      "s17": { "title": "Spot 17", "type": "equirectangular", "panorama": "panos/image17.jpg" },
+      "s18": { "title": "Spot 18", "type": "equirectangular", "panorama": "panos/image18.jpg" },
+      "s19": { "title": "Spot 19", "type": "equirectangular", "panorama": "panos/image19.jpg" },
+      "s20": { "title": "Spot 20", "type": "equirectangular", "panorama": "panos/image20.jpg" },
+      "s21": { "title": "Spot 21", "type": "equirectangular", "panorama": "panos/image21.jpg" },
+      "s22": { "title": "Spot 22", "type": "equirectangular", "panorama": "panos/image22.jpg" },
+      "s23": { "title": "Spot 23", "type": "equirectangular", "panorama": "panos/image23.jpg" },
+      "s24": { "title": "Spot 24", "type": "equirectangular", "panorama": "panos/image24.jpg" },
+      "s25": { "title": "Spot 25", "type": "equirectangular", "panorama": "panos/image25.jpg" },
+      "s26": { "title": "Spot 26", "type": "equirectangular", "panorama": "panos/image26.jpg" },
+      "s27": { "title": "Spot 27", "type": "equirectangular", "panorama": "panos/image27.jpg" },
+      "s28": { "title": "Spot 28", "type": "equirectangular", "panorama": "panos/image28.jpg" },
+      "s29": { "title": "Spot 29", "type": "equirectangular", "panorama": "panos/image29.jpg" },
+      "s30": { "title": "Spot 30", "type": "equirectangular", "panorama": "panos/image30.jpg" },
+      "s31": { "title": "Spot 31", "type": "equirectangular", "panorama": "panos/image31.jpg" },
+      "s32": { "title": "Spot 32", "type": "equirectangular", "panorama": "panos/image32.jpg" },
+      "s33": { "title": "Spot 33", "type": "equirectangular", "panorama": "panos/image33.jpg" },
+      "s34": { "title": "Spot 34", "type": "equirectangular", "panorama": "panos/image34.jpg" },
+      "s35": { "title": "Spot 35", "type": "equirectangular", "panorama": "panos/image35.jpg" },
+      "s36": { "title": "Spot 36", "type": "equirectangular", "panorama": "panos/image36.jpg" },
+      "s37": { "title": "Spot 37", "type": "equirectangular", "panorama": "panos/image37.jpg" },
+      "s38": { "title": "Spot 38", "type": "equirectangular", "panorama": "panos/image38.jpg" },
+      "s39": { "title": "Spot 39", "type": "equirectangular", "panorama": "panos/image39.jpg" },
+      "s40": { "title": "Spot 40", "type": "equirectangular", "panorama": "panos/image40.jpg" },
+      "s41": { "title": "Spot 41", "type": "equirectangular", "panorama": "panos/image41.jpg" },
+      "s42": { "title": "Spot 42", "type": "equirectangular", "panorama": "panos/image42.jpg" },
+      "s43": { "title": "Spot 43", "type": "equirectangular", "panorama": "panos/image43.jpg" },
+      "s44": { "title": "Spot 44", "type": "equirectangular", "panorama": "panos/image44.jpg" },
+      "s45": { "title": "Spot 45", "type": "equirectangular", "panorama": "panos/image45.jpg" },
+      "s46": { "title": "Spot 46", "type": "equirectangular", "panorama": "panos/image46.jpg" },
+      "s47": { "title": "Spot 47", "type": "equirectangular", "panorama": "panos/image47.jpg" },
+      "s48": { "title": "Spot 48", "type": "equirectangular", "panorama": "panos/image48.jpg" },
+      "s49": { "title": "Spot 49", "type": "equirectangular", "panorama": "panos/image49.jpg" },
+      "s50": { "title": "Spot 50", "type": "equirectangular", "panorama": "panos/image50.jpg" },
+      "s51": { "title": "Spot 51", "type": "equirectangular", "panorama": "panos/image51.jpg" },
+      "s52": { "title": "Spot 52", "type": "equirectangular", "panorama": "panos/image52.jpg" },
+      "s53": { "title": "Spot 53", "type": "equirectangular", "panorama": "panos/image53.jpg" }
+    }
+  });
+
+  // Fungsi untuk menampilkan modal minimap
+  function showMinimap() {
+    document.getElementById('minimapModal').classList.add('active');
+  }
+  function hideMinimap() {
+    document.getElementById('minimapModal').classList.remove('active');
+  }
+
+  // === Menampilkan koordinat pitch dan yaw saat panorama di-klik ===
+  const coordDiv = document.createElement('div');
+  coordDiv.style.position = 'fixed';
+  coordDiv.style.bottom = '24px';
+  coordDiv.style.right = '24px';
+  coordDiv.style.background = '#111831cc';
+  coordDiv.style.color = '#22d3ee';
+  coordDiv.style.padding = '10px 18px';
+  coordDiv.style.borderRadius = '10px';
+  coordDiv.style.fontWeight = 'bold';
+  coordDiv.style.zIndex = '2000';
+  coordDiv.style.fontFamily = 'monospace';
+  coordDiv.style.pointerEvents = 'none';
+  coordDiv.textContent = 'Klik panorama untuk koordinat';
+  document.body.appendChild(coordDiv);
+
+  const panoramaEl = document.getElementById('panorama');
+  const toggleBtn = document.getElementById('toggleDragBtn');
+  const viewerContainer = typeof viewer.getContainer === 'function'
+    ? viewer.getContainer()
+    : panoramicFallback();
+
+  let dragEnabled = true;
+
+  function panoramicFallback() {
+    return panoramaEl.querySelector('.pnlm-container') || panoramaEl;
+  }
+
+  function setCoordHint(message) {
+    coordDiv.textContent = message;
+  }
+
+  function showCoords(event) {
+    const coords = viewer.mouseEventToCoords(event);
+    if (coords && Number.isFinite(coords.yaw) && Number.isFinite(coords.pitch)) {
+      coordDiv.textContent = `Yaw: ${coords.yaw.toFixed(2)}, Pitch: ${coords.pitch.toFixed(2)}`;
+    } else {
+      const fallbackYaw = typeof viewer.getYaw === 'function' ? viewer.getYaw() : NaN;
+      const fallbackPitch = typeof viewer.getPitch === 'function' ? viewer.getPitch() : NaN;
+      if (Number.isFinite(fallbackYaw) && Number.isFinite(fallbackPitch)) {
+        coordDiv.textContent = `Yaw: ${fallbackYaw.toFixed(2)}, Pitch: ${fallbackPitch.toFixed(2)}`;
+      } else {
+        setCoordHint('Tidak dapat membaca koordinat');
+      }
+    }
+  }
+
+  function handlePointer(event) {
+    if (!dragEnabled) {
+      showCoords(event);
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
+  function handleScroll(event) {
+    if (!dragEnabled) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
+  const wheelListenerOptions = { capture: true, passive: false };
+
+  function disableDrag() {
+    dragEnabled = false;
+    panoramaEl.style.cursor = 'pointer';
+    viewerContainer.style.cursor = 'pointer';
+    viewerContainer.addEventListener('mousedown', handlePointer, true);
+    viewerContainer.addEventListener('touchstart', handlePointer, true);
+    viewerContainer.addEventListener('click', handlePointer, true);
+    viewerContainer.addEventListener('touchend', handlePointer, true);
+    viewerContainer.addEventListener('wheel', handleScroll, wheelListenerOptions);
+    toggleBtn.textContent = 'Aktifkan Drag';
+    setCoordHint('Mode koordinat aktif — klik panorama');
+  }
+
+  function enableDrag() {
+    dragEnabled = true;
+    panoramaEl.style.cursor = 'grab';
+    viewerContainer.style.cursor = 'grab';
+    viewerContainer.removeEventListener('mousedown', handlePointer, true);
+    viewerContainer.removeEventListener('touchstart', handlePointer, true);
+    viewerContainer.removeEventListener('click', handlePointer, true);
+    viewerContainer.removeEventListener('touchend', handlePointer, true);
+    viewerContainer.removeEventListener('wheel', handleScroll, wheelListenerOptions);
+    toggleBtn.textContent = 'Nonaktifkan Drag';
+    setCoordHint('Klik panorama untuk koordinat');
+  }
+
+  toggleBtn.onclick = function() {
+    if (dragEnabled) {
+      disableDrag();
+    } else {
+      enableDrag();
+    }
+  };
+
+  // Set cursor awal dan pesan bawaan
+  enableDrag();
+</script>
+
+</body>
+</html>
