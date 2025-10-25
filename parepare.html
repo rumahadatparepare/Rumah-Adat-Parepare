@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pannellum Tour 0–13 (no loops)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <link rel="stylesheet" href="css/parepare.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+</head>
+<body>
+<div class="top-buttons">
+  <a href="index.html" class="back-home">Kembali ke Beranda</a>
+  <button class="minimap-btn" onclick="showMinimap()">Tampilkan Minimap</button>
+  <button id="toggleDragBtn" class="minimap-btn">Nonaktifkan Drag</button>
+</div>
+
+<!-- Modal Minimap -->
+<div id="minimapModal" class="minimap-modal" onclick="hideMinimap()">
+  <img src="images/minimap.jpg" alt="Minimap Virtual Tour" class="minimap-img">
+</div>
+
+<h3>Pannellum Virtual Tour (Scenes 0 → 13)</h3>
+<div id="panorama"></div>
+<div class="scenes">
+  <!-- Static scene buttons without any loop -->
+  <button onclick="viewer.loadScene('s0')">0</button>
+  <button onclick="viewer.loadScene('s1')">1</button>
+  <button onclick="viewer.loadScene('s2')">2</button>
+  <button onclick="viewer.loadScene('s3')">3</button>
+  <button onclick="viewer.loadScene('s4')">4</button>
+  <button onclick="viewer.loadScene('s5')">5</button>
+  <button onclick="viewer.loadScene('s6')">6</button>
+  <button onclick="viewer.loadScene('s7')">7</button>
+  <button onclick="viewer.loadScene('s8')">8</button>
+  <button onclick="viewer.loadScene('s9')">9</button>
+  <button onclick="viewer.loadScene('s10')">10</button>
+  <button onclick="viewer.loadScene('s11')">11</button>
+  <button onclick="viewer.loadScene('s12')">12</button>
+  <button onclick="viewer.loadScene('s13')">13</button>
+</div>
+
+<script>
+  // Multi-scene config (no loops)
+  var viewer = pannellum.viewer('panorama', {
+    "default": {
+      "firstScene": "s0",
+      "autoLoad": true,
+      "showControls": true
+    },
+    "scenes": {
+      "s0":  { "title": "Spot 0",  "type": "equirectangular", "panorama": "panos/image0.jpg" },
+      "s1":  { "title": "Spot 1",  "type": "equirectangular", "panorama": "panos/image1.jpg" },
+      "s2":  { "title": "Spot 2",  "type": "equirectangular", "panorama": "panos/image2.jpg" },
+      "s3":  { "title": "Spot 3",  "type": "equirectangular", "panorama": "panos/image3.jpg" },
+      "s4":  { "title": "Spot 4",  "type": "equirectangular", "panorama": "panos/image4.jpg" },
+      "s5":  { "title": "Spot 5",  "type": "equirectangular", "panorama": "panos/image5.jpg" },
+      "s6":  { "title": "Spot 6",  "type": "equirectangular", "panorama": "panos/image6.jpg" },
+      "s7":  { "title": "Spot 7",  "type": "equirectangular", "panorama": "panos/image7.jpg" },
+      "s8":  { "title": "Spot 8",  "type": "equirectangular", "panorama": "panos/image8.jpg" },
+      "s9":  { "title": "Spot 9",  "type": "equirectangular", "panorama": "panos/image9.jpg" },
+      "s10": { "title": "Spot 10", "type": "equirectangular", "panorama": "panos/image10.jpg" },
+      "s11": { "title": "Spot 11", "type": "equirectangular", "panorama": "panos/image11.jpg" },
+      "s12": { "title": "Spot 12", "type": "equirectangular", "panorama": "panos/image12.jpg" },
+      "s13": { "title": "Spot 13", "type": "equirectangular", "panorama": "panos/image12.jpg" }
+    }
+    }
+  );
+
+  // Fungsi untuk menampilkan modal minimap
+  function showMinimap() {
+    document.getElementById('minimapModal').classList.add('active');
+  }
+  function hideMinimap() {
+    document.getElementById('minimapModal').classList.remove('active');
+  }
+
+  // === Menampilkan koordinat pitch dan yaw saat panorama di-klik ===
+  const coordDiv = document.createElement('div');
+  coordDiv.style.position = 'fixed';
+  coordDiv.style.bottom = '24px';
+  coordDiv.style.right = '24px';
+  coordDiv.style.background = '#111831cc';
+  coordDiv.style.color = '#22d3ee';
+  coordDiv.style.padding = '10px 18px';
+  coordDiv.style.borderRadius = '10px';
+  coordDiv.style.fontWeight = 'bold';
+  coordDiv.style.zIndex = '2000';
+  coordDiv.style.fontFamily = 'monospace';
+  coordDiv.style.pointerEvents = 'none';
+  coordDiv.textContent = 'Klik panorama untuk koordinat';
+  document.body.appendChild(coordDiv);
+
+  const panoramaEl = document.getElementById('panorama');
+  const toggleBtn = document.getElementById('toggleDragBtn');
+  const viewerContainer = typeof viewer.getContainer === 'function'
+    ? viewer.getContainer()
+    : panoramicFallback();
+
+  let dragEnabled = true;
+
+  function panoramicFallback() {
+    return panoramaEl.querySelector('.pnlm-container') || panoramaEl;
+  }
+
+  function setCoordHint(message) {
+    coordDiv.textContent = message;
+  }
+
+  function showCoords(event) {
+    const coords = viewer.mouseEventToCoords(event);
+    if (coords && Number.isFinite(coords.yaw) && Number.isFinite(coords.pitch)) {
+      coordDiv.textContent = `Yaw: ${coords.yaw.toFixed(2)}, Pitch: ${coords.pitch.toFixed(2)}`;
+    } else {
+      const fallbackYaw = typeof viewer.getYaw === 'function' ? viewer.getYaw() : NaN;
+      const fallbackPitch = typeof viewer.getPitch === 'function' ? viewer.getPitch() : NaN;
+      if (Number.isFinite(fallbackYaw) && Number.isFinite(fallbackPitch)) {
+        coordDiv.textContent = `Yaw: ${fallbackYaw.toFixed(2)}, Pitch: ${fallbackPitch.toFixed(2)}`;
+      } else {
+        setCoordHint('Tidak dapat membaca koordinat');
+      }
+    }
+  }
+
+  function handlePointer(event) {
+    if (!dragEnabled) {
+      showCoords(event);
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
+  function handleScroll(event) {
+    if (!dragEnabled) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
+  const wheelListenerOptions = { capture: true, passive: false };
+
+  function disableDrag() {
+    dragEnabled = false;
+    panoramaEl.style.cursor = 'pointer';
+    viewerContainer.style.cursor = 'pointer';
+    viewerContainer.addEventListener('mousedown', handlePointer, true);
+    viewerContainer.addEventListener('touchstart', handlePointer, true);
+    viewerContainer.addEventListener('click', handlePointer, true);
+    viewerContainer.addEventListener('touchend', handlePointer, true);
+    viewerContainer.addEventListener('wheel', handleScroll, wheelListenerOptions);
+    toggleBtn.textContent = 'Aktifkan Drag';
+    setCoordHint('Mode koordinat aktif — klik panorama');
+  }
+
+  function enableDrag() {
+    dragEnabled = true;
+    panoramaEl.style.cursor = 'grab';
+    viewerContainer.style.cursor = 'grab';
+    viewerContainer.removeEventListener('mousedown', handlePointer, true);
+    viewerContainer.removeEventListener('touchstart', handlePointer, true);
+    viewerContainer.removeEventListener('click', handlePointer, true);
+    viewerContainer.removeEventListener('touchend', handlePointer, true);
+    viewerContainer.removeEventListener('wheel', handleScroll, wheelListenerOptions);
+    toggleBtn.textContent = 'Nonaktifkan Drag';
+    setCoordHint('Klik panorama untuk koordinat');
+  }
+
+  toggleBtn.onclick = function() {
+    if (dragEnabled) {
+      disableDrag();
+    } else {
+      enableDrag();
+    }
+  };
+
+  // Set cursor awal dan pesan bawaan
+  enableDrag();
+</script>
+
+</body>
+</html>
