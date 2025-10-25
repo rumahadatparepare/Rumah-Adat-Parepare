@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Virtual Tour: Rumah Adat Parepare</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+    <style>
+      :root {
+        --bg-dark: #0f172a;
+        --panel-dark: #1e293b;
+        --border-dark: #334155;
+        --text-light: #e2e8f0;
+        --text-muted: #94a3b8;
+        --accent-cyan: #22d3ee;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        margin: 0;
+        color: var(--text-light);
+        background-color: var(--bg-dark);
+      }
+      .app {
+        display: flex;
+        height: 100vh;
+      }
+      #sidebar {
+        width: 320px;
+        flex-shrink: 0;
+        background-color: var(--panel-dark);
+        padding: 20px;
+        border-right: 1px solid var(--border-dark);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      #sidebar h1 {
+        font-size: 1.6em;
+        margin-top: 0;
+        color: white;
+      }
+      #sidebar .meta {
+        font-size: 0.9em;
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--border-dark);
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .scene-btn {
+        padding: 10px;
+        border: 1px solid var(--border-dark);
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.2s ease-in-out;
+        font-weight: bold;
+      }
+      .scene-btn:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent-cyan);
+        color: white;
+      }
+      .scene-btn.active {
+        background-color: var(--accent-cyan);
+        color: var(--bg-dark);
+        border-color: var(--accent-cyan);
+        box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+      }
+      .controls {
+        margin-top: auto;
+        padding-top: 15px;
+        border-top: 1px solid var(--border-dark);
+        display: flex;
+        justify-content: space-between;
+      }
+      .controls button {
+        width: 48%;
+        padding: 12px;
+        border: 1px solid var(--border-dark);
+        background-color: transparent;
+        color: var(--text-light);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s ease;
+      }
+      .controls button:hover {
+        background-color: var(--accent-cyan);
+        color: var(--bg-dark);
+        border-color: var(--accent-cyan);
+      }
+      #panorama {
+        flex-grow: 1;
+      }
+      .top-buttons {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        display: flex;
+        gap: 10px;
+      }
+      .back-home,
+      .minimap-btn {
+        background-color: var(--panel-dark);
+        color: var(--text-light);
+        border: 1px solid var(--border-dark);
+        padding: 12px 22px;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.2s ease;
+      }
+      .back-home:hover,
+      .minimap-btn:hover {
+        background-color: var(--accent-cyan);
+        color: var(--bg-dark);
+        border-color: var(--accent-cyan);
+      }
+      .minimap-modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      .minimap-modal.active {
+        display: flex;
+      }
+      .minimap-img {
+        max-width: 90%;
+        max-height: 90%;
+        border: 3px solid white;
+      }
+
+      /* === KODE CSS UNTUK TAMPILAN MOBILE (RESPONSIF) - PERBAIKAN === */
+      @media (max-width: 768px) {
+        .app {
+          flex-direction: column; /* Mengubah layout menjadi vertikal */
+          height: auto; /* Biarkan tinggi menyesuaikan konten */
+        }
+
+        #sidebar {
+          width: 100%;
+          flex-shrink: 0;
+          /* INI SOLUSINYA: Mendorong sidebar ke bawah agar tidak tertimpa tombol */
+          margin-top: 60px;
+          border-right: none; /* Hapus border di sisi kanan pada mobile */
+          border-bottom: 1px solid var(--border-dark);
+          box-sizing: border-box;
+        }
+
+        #panorama {
+          width: 100%;
+          /* Beri tinggi yang pasti agar panorama tidak terlalu kecil */
+          height: 60vh;
+        }
+
+        .top-buttons {
+          /* Biarkan absolute agar tetap di atas, tapi tidak fixed saat scroll */
+          position: absolute;
+          width: calc(100% - 20px); /* Pastikan lebarnya pas di layar mobile */
+          box-sizing: border-box;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-buttons">
+      <a href="index.html" class="back-home">Kembali ke Beranda</a>
+      <button class="minimap-btn" onclick="showMinimap()">
+        Tampilkan Minimap
+      </button>
+      <button id="toggleDragBtn" class="minimap-btn">Nonaktifkan Drag</button>
+    </div>
+
+    <div id="minimapModal" class="minimap-modal" onclick="hideMinimap()">
+      <img
+        src="images/minimap.jpg"
+        alt="Minimap Virtual Tour"
+        class="minimap-img"
+      />
+    </div>
+
+    <div class="app">
+      <aside id="sidebar">
+        <h1>Virtual Tour: Rumah Adat Parepare</h1>
+        <p class="meta">
+          Jelajahi setiap sudut Rumah Adat Parepare.<br />
+          Klik pada salah satu titik di bawah untuk langsung menuju lokasi.
+        </p>
+        <div id="sceneGrid" class="grid"></div>
+        <div class="controls">
+          <button id="prevBtn" title="Scene sebelumnya">◀ Sebelumnya</button>
+          <button id="nextBtn" title="Scene berikutnya">Berikutnya ▶</button>
+        </div>
+      </aside>
+      <main id="panorama"></main>
+    </div>
+
+    <script>
+      // === KONFIGURASI VIRTUAL TOUR ===
+      const START_INDEX = 0;
+      const END_INDEX = 13;
+      const sceneTitles = [
+        "Halaman Depan",
+        "Naik Tangga",
+        "Teras",
+        "Pintu",
+        "Ruangan Utama 1",
+        "Ruangan utama 2",
+        "Ruangan utama 3",
+        "Wc",
+        "Kamar",
+        "Tangga Belakang",
+        "Halaman Samping Kanan 1",
+        "Halaman Samping Kanan 2",
+        "Halaman Samping Kiri 1",
+        "Halaman Samping Kiri 2",
+      ];
+      const panoPath = (i) => `panos/image${i}.jpg`;
+      const sceneId = (i) => `scene-${i}`;
+      const overrides = {
+        0: { next: { yaw: 0, pitch: 0 } },
+        1: { next: { yaw: 1, pitch: 8 }, prev: { yaw: -200, pitch: 3 } },
+        2: { next: { yaw: 0, pitch: -1 }, prev: { yaw: -200, pitch: -1.991 } },
+        3: { next: { yaw: 50, pitch: 0 }, prev: { yaw: 185, pitch: -17 } },
+        4: { next: { yaw: 50, pitch: -2 }, prev: { yaw: -95, pitch: -1 } },
+        5: { next: { yaw: -238, pitch: -1 }, prev: { yaw: 33, pitch: -1 } },
+        6: { next: { yaw: -19, pitch: -2 }, prev: { yaw: -35, pitch: -4 } },
+        7: { next: { yaw: -200, pitch: 0 }, prev: { yaw: -48, pitch: 0 } },
+        8: { next: { yaw: 28, pitch: 0 }, prev: { yaw: 30, pitch: 0 } },
+        9: { next: { yaw: -35, pitch: 3 },prev: { yaw: -370, pitch: 10 } },
+        10: { next: { yaw: -60, pitch: -2 }, prev: { yaw: -310, pitch: -4 } },
+        11: { next: { yaw: -90, pitch: 0 }, prev: { yaw: -280, pitch: -3 } },
+        12: { next: { yaw: -50, pitch: 0 }, prev: { yaw: 100, pitch: 0 } },
+        13: { prev: { yaw: -260, pitch: 2 } },
+      };
+      const config = {
+        default: {
+          firstScene: sceneId(START_INDEX),
+          autoLoad: true,
+          showControls: true,
+          compass: false,
+          hfov: 110,
+          keyboardZoom: true,
+          hotSpotDebug: true,
+        },
+        scenes: {},
+      };
+      for (let i = START_INDEX; i <= END_INDEX; i++) {
+        const nextOverride = overrides[i]?.next || {};
+        const prevOverride = overrides[i]?.prev || {};
+        config.scenes[sceneId(i)] = {
+          title: sceneTitles[i] || `Spot ${i}`,
+          type: "equirectangular",
+          panorama: panoPath(i),
+          hotSpots: [
+            ...(i > START_INDEX
+              ? [
+                  {
+                    yaw: prevOverride.yaw || 180,
+                    pitch: prevOverride.pitch || 0,
+                    type: "scene",
+                    text: `Kembali ke: ${sceneTitles[i - 1]}`,
+                    sceneId: sceneId(i - 1),
+                  },
+                ]
+              : []),
+            ...(i < END_INDEX
+              ? [
+                  {
+                    yaw: nextOverride.yaw || 0,
+                    pitch: nextOverride.pitch || 0,
+                    type: "scene",
+                    text: `Menuju: ${sceneTitles[i + 1]}`,
+                    sceneId: sceneId(i + 1),
+                  },
+                ]
+              : []),
+          ],
+        };
+      }
+      const viewer = pannellum.viewer("panorama", config);
+      function showMinimap() {
+        document.getElementById("minimapModal").classList.add("active");
+      }
+      function hideMinimap() {
+        document.getElementById("minimapModal").classList.remove("active");
+      }
+      const coordDiv = document.createElement("div");
+      Object.assign(coordDiv.style, {
+        position: "fixed",
+        bottom: "24px",
+        right: "24px",
+        background: "var(--panel-dark)",
+        color: "var(--accent-cyan)",
+        padding: "10px 18px",
+        borderRadius: "8px",
+        fontWeight: "bold",
+        zIndex: "2000",
+        fontFamily: "monospace",
+        pointerEvents: "none",
+        border: "1px solid var(--border-dark)",
+      });
+      document.body.appendChild(coordDiv);
+      const panoramaEl = document.getElementById("panorama");
+      const toggleBtn = document.getElementById("toggleDragBtn");
+      const viewerContainer = viewer.getContainer();
+      let dragEnabled = true;
+      const setCoordHint = (message) => {
+        coordDiv.textContent = message;
+      };
+      const showCoords = (event) => {
+        const coords = viewer.mouseEventToCoords(event);
+        coordDiv.textContent = `Yaw: ${coords[1].toFixed(
+          2
+        )}, Pitch: ${coords[0].toFixed(2)}`;
+      };
+      const handlePointer = (event) => {
+        if (!dragEnabled) {
+          showCoords(event);
+          event.stopPropagation();
+          event.preventDefault();
+        }
+      };
+      const handleScroll = (event) => {
+        if (!dragEnabled) {
+          event.stopPropagation();
+          event.preventDefault();
+        }
+      };
+      const wheelListenerOptions = { capture: true, passive: false };
+      function disableDrag() {
+        dragEnabled = false;
+        Object.assign(panoramaEl.style, { cursor: "pointer" });
+        Object.assign(viewerContainer.style, { cursor: "pointer" });
+        viewerContainer.addEventListener("mousedown", handlePointer, true);
+        viewerContainer.addEventListener("touchstart", handlePointer, true);
+        viewerContainer.addEventListener(
+          "wheel",
+          handleScroll,
+          wheelListenerOptions
+        );
+        toggleBtn.textContent = "Aktifkan Drag";
+        setCoordHint("Mode koordinat aktif");
+      }
+      function enableDrag() {
+        dragEnabled = true;
+        Object.assign(panoramaEl.style, { cursor: "grab" });
+        Object.assign(viewerContainer.style, { cursor: "grab" });
+        viewerContainer.removeEventListener("mousedown", handlePointer, true);
+        viewerContainer.removeEventListener("touchstart", handlePointer, true);
+        viewerContainer.removeEventListener(
+          "wheel",
+          handleScroll,
+          wheelListenerOptions
+        );
+        toggleBtn.textContent = "Nonaktifkan Drag";
+        setCoordHint("Klik panorama untuk koordinat");
+      }
+      toggleBtn.onclick = () => (dragEnabled ? disableDrag() : enableDrag());
+      enableDrag();
+      const grid = document.getElementById("sceneGrid");
+      for (let i = START_INDEX; i <= END_INDEX; i++) {
+        const b = document.createElement("button");
+        b.className = "scene-btn";
+        b.textContent = i;
+        b.dataset.scene = sceneId(i);
+        b.onclick = () => viewer.loadScene(sceneId(i));
+        grid.appendChild(b);
+      }
+      const setActive = () => {
+        const current = viewer.getScene();
+        document.querySelectorAll(".scene-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.scene === current);
+        });
+      };
+      viewer.on("load", setActive);
+      setActive();
+      const idxFromScene = (sid) => parseInt(sid.split("-")[1], 10);
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      prevBtn.onclick = () => {
+        const i = idxFromScene(viewer.getScene());
+        if (i > START_INDEX) viewer.loadScene(sceneId(i - 1));
+      };
+      nextBtn.onclick = () => {
+        const i = idxFromScene(viewer.getScene());
+        if (i < END_INDEX) viewer.loadScene(sceneId(i + 1));
+      };
+    </script>
+  </body>
+</html>
