@@ -1,0 +1,49 @@
+html,
+body {
+  background: #0b1020;
+}
+
+.viewer-container {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  padding: 0 0 12px;
+}
+
+#viewer {
+  flex: 1;
+  min-height: 70vh;
+  position: relative;
+  border-top: 2px solid #1f2937;
+  border-bottom: 1px solid #1f2a44;
+}
+
+#viewer canvas {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.page-footer {
+  margin: 0;
+  padding: 18px 24px;
+  text-align: center;
+  background: #111831;
+  border-top: 1px solid #1f2a44;
+  color: #cbd5f5;
+  font-size: 0.95rem;
+}
+
+.minimap-btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-height: 600px) {
+  #viewer {
+    min-height: 60vh;
+  }
+}
