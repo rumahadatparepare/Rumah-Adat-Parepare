@@ -40,7 +40,6 @@
   <button onclick="viewer.loadScene('s10')">10</button>
   <button onclick="viewer.loadScene('s11')">11</button>
   <button onclick="viewer.loadScene('s12')">12</button>
-  <button onclick="viewer.loadScene('s13')">13</button>
 </div>
 
 <script>
@@ -96,100 +95,93 @@
     },
     "scenes": {
       "s0":  { "title": "Spot 0",  "type": "equirectangular", "panorama": "assets/360_images/image0.jpg",  "hotSpots": [
-        { "pitch": 0, "yaw": 0, "type": "scene", "sceneId": "s1",  "text": "Ke Spot 1" },
+        { "pitch": 0.50, "yaw": 2.80, "type": "scene", "sceneId": "s1",  "text": "Pintu Masuk" },
         {
-              "pitch": 24,
-              "yaw": 0.75,
+              "pitch": 13.10,
+              "yaw": 15.14,
               "type": "info",
               "text": "Rumah Adat Parepare</strong> adalah rumah panggung khas Bugis-Makassar berbahan kayu dengan atap limas. Bangunan ini melambangkan identitas, sejarah, dan kebersamaan masyarakat Parepare.<br><br><em>Sumber:</em> <a href=\"https://id.wikipedia.org/wiki/Bola_Ugi\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia – Bola Ugi</a>",
               "URL": "https://sites.google.com/view/rumah-adat-pare-pare/indonesia"
          },
-         {
-            "pitch": 7,
-            "yaw": 52,
-            "type": "info",
-            "text": "Papan nama"
-        },
         {
             "pitch": -1.16,
             "yaw": -35.75,
             "type": "info",
-            "text": "Lampu"
-        },
-        {
-            "pitch": -14,
-            "yaw": 20.14,
-            "type": "info",
-            "text": "pagar"
+            "text": "Pagar"
         },
       ],
     },
       s1: { 
-        title: "Spot 1",
+        title: "Pintu Masuk",
         type: "equirectangular",
         panorama: "assets/360_images/image1.jpg",
         hotSpots: [
           {
-            pitch: 0,
-            yaw: 0,
+            pitch: -5,
+            yaw: 12.67,
             type: "scene",
             sceneId: "s2",
-            text: "Ke Spot 2",
-          }
+            text: "Ruang Utama",
+          },
+        {
+            "pitch": 32.16,
+            "yaw": 86.75,
+            "type": "info",
+            "text": "Kursi"
+        },
         ]
           
       },
       s2:  {
-        title: "Spot 2",
+        title: "Ruang Utama",
         type: "equirectangular",
         panorama: "assets/360_images/image2.jpg",
         hotSpots: [
           { 
-            pitch: 0,
-            yaw: 0, 
+            pitch: -4.54,
+            yaw: -61, 
             type: "scene",
             sceneId: "s3",
-            text: "Ke Spot 3" 
+            text: "Ruang Utama 2" 
           }
         ]
       },
       s3:  {
-      title: "Spot 3",
+      title: "Ruang Utama 2",
       type: "equirectangular",
       panorama: "assets/360_images/image3.jpg",
       hotSpots: [
         {
-          pitch: -2.96,
-          yaw:32.56,
+          pitch: -7,
+          yaw:-135,
           type: "scene",
           sceneId: "s4",
-          text: "Ke Spot 4" 
+          text: "Ruang Utama 3" 
         }
       ]
     },
       s4:  {
-      title: "Spot 4",
+      title: "Ruang Utama 3",
       type: "equirectangular",
       panorama: "assets/360_images/image4.jpg",
       hotSpots: [
         {
-          pitch: 0.24, 
-          yaw: 46, 
+          pitch: -1, 
+          yaw: -78, 
           type: "scene",
           sceneId: "s5",
-          text: "Ke Spot 5" 
+          text: "WC" 
         }
       ]
     },
-      "s5":  { "title": "Spot 5",  "type": "equirectangular", "panorama": "assets/360_images/image5.jpg",  "hotSpots": [{ "pitch": 0, "yaw": 125, "type": "scene", "sceneId": "s6",  "text": "Ke Spot 6" }] },
-      "s6":  { "title": "Spot 6",  "type": "equirectangular", "panorama": "assets/360_images/image6.jpg",  "hotSpots": [{ "pitch": 0, "yaw": -33, "type": "scene", "sceneId": "s7",  "text": "Ke Spot 7" }] },
-      "s7":  { "title": "Spot 7",  "type": "equirectangular", "panorama": "assets/360_images/image7.jpg",  "hotSpots": [{ "pitch": 12, "yaw": 162, "type": "scene", "sceneId": "s8",  "text": "Ke Spot 8" }] },
-      "s8":  { "title": "Spot 8",  "type": "equirectangular", "panorama": "assets/360_images/image8.jpg",  "hotSpots": [{ "pitch": 5, "yaw": 33, "type": "scene", "sceneId": "s9",  "text": "Ke Spot 9" }] },
-      "s9":  { "title": "Spot 9",  "type": "equirectangular", "panorama": "assets/360_images/image9.jpg",  "hotSpots": [{ "pitch": 4, "yaw": -59, "type": "scene", "sceneId": "s10", "text": "Ke Spot 10" }] },
-      "s10": { "title": "Spot 10", "type": "equirectangular", "panorama": "assets/360_images/image10.jpg", "hotSpots": [{ "pitch": -4, "yaw": -55, "type": "scene", "sceneId": "s11", "text": "Ke Spot 11" }] },
-      "s11": { "title": "Spot 11", "type": "equirectangular", "panorama": "assets/360_images/image11.jpg", "hotSpots": [{ "pitch": -2, "yaw": -89, "type": "scene", "sceneId": "s12", "text": "Ke Spot 12" }] },
-      "s12": { "title": "Spot 12", "type": "equirectangular", "panorama": "assets/360_images/image12.jpg", "hotSpots": [{ "pitch": 0, "yaw": -58, "type": "scene", "sceneId": "s13", "text": "Ke Spot 13" }] },
-      "s13": { "title": "Spot 136", "type": "equirectangular", "panorama": "assets/360_images/image13.jpg" }
+      "s5":  { "title": "WC",  "type": "equirectangular", "panorama": "assets/360_images/image5.jpg",  "hotSpots": [{ "pitch": -6, "yaw": -139, "type": "scene", "sceneId": "s6",  "text": "Keluar" }] },
+      "s6":  { "title": "Depan Kamar",  "type": "equirectangular", "panorama": "assets/360_images/image6.jpg",  "hotSpots": [{ "pitch": -0, "yaw": 145, "type": "scene", "sceneId": "s7",  "text": "Kamar" }] },
+      "s7":  { "title": "Kamaar",  "type": "equirectangular", "panorama": "assets/360_images/image7.jpg",  "hotSpots": [{ "pitch": -0, "yaw": -110, "type": "scene", "sceneId": "s8",  "text": "Keluar" }] },
+      "s8":  { "title": "Depan Kamar",  "type": "equirectangular", "panorama": "assets/360_images/image8.jpg",  "hotSpots": [{ "pitch": -10, "yaw": 21, "type": "scene", "sceneId": "s9",  "text": "Tangga" }] },
+      "s9":  { "title": "Tangga",  "type": "equirectangular", "panorama": "assets/360_images/image9.jpg",  "hotSpots": [{ "pitch": -3, "yaw": 177, "type": "scene", "sceneId": "s10", "text": "Keluar Halaman" }] },
+      "s10": { "title": "Halaman 1", "type": "equirectangular", "panorama": "assets/360_images/image10.jpg", "hotSpots": [{ "pitch": -4, "yaw": -55, "type": "scene", "sceneId": "s11", "text": "Halamman 2" }] },
+      "s11": { "title": "Halaman 2", "type": "equirectangular", "panorama": "assets/360_images/image11.jpg", "hotSpots": [{ "pitch": -2, "yaw": -89, "type": "scene", "sceneId": "s12", "text": "Samping Rumah" }] },
+      "s12": { "title": "samping Rumah", "type": "equirectangular", "panorama": "assets/360_images/image12.jpg" }, 
   }
 });
 
