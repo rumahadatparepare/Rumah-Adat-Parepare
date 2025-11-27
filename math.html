@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MathJax List Left-Aligned Example</title>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    
+    <style>
+        /* *** THE KEY CSS TO ALIGN EQUATIONS LEFT ***
+        
+        1. Target the <ul> to ensure the list wrapper respects the left alignment.
+        2. Target the MathJax display container (MathJax_Display) 
+           and force its text alignment to the left.
+        */
+        .left-list {
+            list-style-type: disc;
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+            /* Ensure the <li> contents start on the left */
+            text-align: left; 
+        }
+        
+        /* This class targets the internal MathJax output container 
+        that is usually responsible for centering the formula. 
+        We use !important to override any default MathJax centering rules. 
+        */
+        .left-list .MathJax_Display {
+            text-align: left !important;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>List of Left-Aligned Mathematical Functions</h2>
+    
+    <ul class="left-list">
+        <li>
+            The variance ($\sigma^2$) is calculated as: 
+            $$ \sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2 $$
+        </li>
+        <li>
+            The Gaussian integral is defined by:
+            $$ \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi} $$
+        </li>
+        <li>
+            The derivative definition uses a limit function:
+            $$ f'(x) = \lim_{\Delta x \to 0} \frac{\sin(x + \Delta x) - \sin(x)}{\Delta x} $$
+        </li>
+    </ul>
+
+</body>
+</html>
