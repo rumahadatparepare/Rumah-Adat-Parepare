@@ -83,6 +83,16 @@
       position: fixed;
       bottom: 15px;
     }
+
+    /* Penjelasan teks */
+    .description {
+      width: 90%;
+      max-width: 700px;
+      text-align: justify;
+      line-height: 1.7;
+      color: #cfcfcf;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -92,8 +102,8 @@
 
   <h1>3D Model Rumah Adat Pare-Pare</h1>
 
+  <!-- Container model 3D -->
   <div class="model-container">
-    <!-- Ganti src dengan path model GLB kamu -->
     <model-viewer 
       src="assets/model/parepare_3d.glb" 
       alt="Model 3D Rumah Adat Pare-Pare"
@@ -101,11 +111,13 @@
       auto-rotate 
       shadow-intensity="1"
       exposure="1.2"
-      ar>
+      ar
+      min-camera-orbit="auto auto 0.1m"   <!-- Zoom sangat dekat -->
     </model-viewer>
   </div>
 
-  <p style="width: 90%; max-width: 700px; text-align: justify; line-height: 1.7; color: #cfcfcf; margin-top: 10px;">
+  <!-- Deskripsi rumah adat -->
+  <p class="description">
     Rumah Adat Pare-Pare adalah rumah tradisional khas suku Bugis–Makassar di kota Pare-Pare, Sulawesi Selatan. Rumah ini biasanya dibangun dengan struktur panggung dari kayu, atap berbentuk limas atau pelana, serta detail kayu yang mencerminkan tradisi dan identitas budaya masyarakat Bugis.  
     Rangka rumah, tiang penyangga, dinding, dan atap dibuat dari kayu — memberikan sirkulasi udara dan kenyamanan sesuai iklim tropis setempat.  
     Melalui model 3D ini, kamu dapat mengeksplorasi bentuk, struktur, dan arsitektur rumah adat secara mendetail — dari tiang penyangga hingga detail atap — sambil menghargai nilai budaya dan makna sejarah yang terkandung di dalamnya.
@@ -115,3 +127,4 @@
 
 </body>
 </html>
+
