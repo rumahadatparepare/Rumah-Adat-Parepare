@@ -1,130 +1,198 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Model Rumah Adat Pare-Pare</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Model Rumah Adat Pare-Pare</title>
 
-  <!-- Import Model Viewer -->
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
 
-  <style>
-    body {
-      background-color: #0d1117;
-      color: #e5e5e5;
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
-    }
+    <style>
+      body {
+        background-color: #0d1117;
+        color: #e5e5e5;
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        position: relative;
+      }
 
-    /* Tombol di pojok kiri atas */
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 25px;
-      background-color: #00c8ff;
-      color: #0d1117;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 200, 255, 0.3);
-    }
+      .back-button {
+        position: absolute;
+        top: 20px;
+        left: 25px;
+        background-color: #00c8ff;
+        color: #0d1117;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+      }
 
-    .back-button:hover {
-      background-color: #008cbf;
-      box-shadow: 0 6px 16px rgba(0, 200, 255, 0.45);
-      transform: translateY(-2px);
-    }
+      h1 {
+        margin-top: 80px;
+        color: #00c8ff;
+        border-bottom: 2px solid #00c8ff;
+        padding-bottom: 8px;
+        text-align: center;
+      }
 
-    h1 {
-      font-size: 1.8rem;
-      color: #00c8ff;
-      margin-bottom: 25px;
-      border-bottom: 2px solid #00c8ff;
-      padding-bottom: 8px;
-      letter-spacing: 1px;
-      text-align: center;
-    }
+      .model-wrapper {
+        background-color: #161b22;
+        border-radius: 12px;
+        padding: 10px;
+        width: 90%;
+        max-width: 700px;
+        margin-bottom: 25px;
+      }
 
-    .model-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #111827;
-      border-radius: 12px;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
-      padding: 10px;
-      margin-bottom: 25px;
-      width: 90%;
-      max-width: 700px;
-      height: 400px;
-    }
+      .model-container {
+        height: 400px;
+      }
 
-    model-viewer {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-      background-color: #111827;
-    }
+      model-viewer {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #0d1117;
+      }
 
-    footer {
-      font-size: 0.85rem;
-      color: #888;
-      text-align: center;
-      position: fixed;
-      bottom: 15px;
-    }
+      .controls {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #21262d;
+        border-radius: 8px;
+      }
 
-    /* Penjelasan teks */
-    .description {
-      width: 90%;
-      max-width: 700px;
-      text-align: justify;
-      line-height: 1.7;
-      color: #cfcfcf;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
+      .control-group {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
 
-  <!-- Tombol kiri atas -->
-  <button class="back-button" onclick="window.location.href='index.html'">← Kembali</button>
+      .btn-ctrl {
+        background-color: #30363d;
+        border: 1px solid #6e7681;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
 
-  <h1>3D Model Rumah Adat Pare-Pare</h1>
+      .btn-ctrl:hover {
+        background-color: #00c8ff;
+        color: #000;
+      }
 
-  <!-- Container model 3D -->
-  <div class="model-container">
-    <model-viewer 
-      src="assets/model/parepare_3d.glb" 
-      alt="Model 3D Rumah Adat Pare-Pare"
-      camera-controls 
-      auto-rotate 
-      shadow-intensity="1"
-      exposure="1.2"
-      ar
-      min-camera-orbit="auto auto 0.1m"   <!-- Zoom sangat dekat -->
-    </model-viewer>
-  </div>
+      .description-text {
+        width: 90%;
+        max-width: 700px;
+        text-align: justify;
+        line-height: 1.7;
+        color: #cfcfcf;
+        margin-bottom: 60px;
+      }
 
-  <!-- Deskripsi rumah adat -->
-  <p class="description">
-    Rumah Adat Pare-Pare adalah rumah tradisional khas suku Bugis–Makassar di kota Pare-Pare, Sulawesi Selatan. Rumah ini biasanya dibangun dengan struktur panggung dari kayu, atap berbentuk limas atau pelana, serta detail kayu yang mencerminkan tradisi dan identitas budaya masyarakat Bugis.  
-    Rangka rumah, tiang penyangga, dinding, dan atap dibuat dari kayu — memberikan sirkulasi udara dan kenyamanan sesuai iklim tropis setempat.  
-    Melalui model 3D ini, kamu dapat mengeksplorasi bentuk, struktur, dan arsitektur rumah adat secara mendetail — dari tiang penyangga hingga detail atap — sambil menghargai nilai budaya dan makna sejarah yang terkandung di dalamnya.
-  </p>
+      footer {
+        font-size: 0.85rem;
+        color: #888;
+        text-align: center;
+        padding: 15px;
+        width: 100%;
+        background-color: #0d1117;
+        position: fixed;
+        bottom: 0;
+      }
+    </style>
+  </head>
 
-  <footer>© 2025 Rumah Adat Pare-Pare</footer>
+  <body>
+    <a href="index.html" class="back-button">← Kembali</a>
 
-</body>
+    <h1>3D Model Rumah Adat Pare-Pare</h1>
+
+    <div class="model-wrapper">
+      <div class="model-container">
+        <model-viewer
+          id="model"
+          src="assets/model/parepare_3d.glb"
+          alt="Model 3D Rumah Adat Pare-Pare"
+          camera-controls
+          auto-rotate
+          shadow-intensity="1"
+          exposure="1"
+          min-camera-orbit="auto auto 2%"
+          max-camera-orbit="auto auto 150%"
+        ></model-viewer>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <button class="btn-ctrl" onclick="ubahZoom(-10)">➖ Zoom</button>
+          <button class="btn-ctrl" onclick="ubahZoom(10)">➕ Zoom</button>
+        </div>
+
+        <div class="control-group">
+          <button class="btn-ctrl" onclick="putarKamera(-30)">↺</button>
+          <button class="btn-ctrl" onclick="putarKamera(30)">↻</button>
+        </div>
+
+        <button
+          class="btn-ctrl"
+          onclick="resetKamera()"
+          style="background:#da3633"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <p class="description-text">
+      Rumah Adat Pare-Pare merupakan rumah tradisional khas wilayah Pare-Pare,
+      Sulawesi Selatan, yang berkaitan erat dengan budaya Bugis–Makassar.
+      Rumah ini berbentuk panggung dengan struktur kayu, memiliki sirkulasi udara
+      yang baik, dan dirancang sesuai dengan kondisi lingkungan tropis.
+      <br /><br />
+      Melalui model 3D ini, pengguna dapat mengamati bentuk arsitektur rumah adat
+      secara visual dari berbagai sudut pandang untuk memahami struktur dan nilai
+      budaya yang terkandung di dalamnya.
+    </p>
+
+    <footer>© 2025 Etnomatematika Rumah Adat Pare-Pare · Tim Pengembang</footer>
+
+    <script>
+      const model = document.querySelector("#model");
+
+      function putarKamera(deg) {
+        const o = model.getCameraOrbit();
+        model.cameraOrbit = `${o.theta + (deg * Math.PI) / 180}rad ${o.phi}rad ${o.radius}m`;
+      }
+
+      function ubahZoom(step) {
+        let fov = model.getFieldOfView() - step;
+
+        // ZOOM DIPERBESAR
+        if (fov < 5) fov = 5;
+        if (fov > 70) fov = 70;
+
+        model.fieldOfView = `${fov}deg`;
+      }
+
+      function resetKamera() {
+        model.cameraOrbit = "auto auto auto";
+        model.cameraTarget = "auto auto auto";
+        model.fieldOfView = "auto";
+      }
+    </script>
+  </body>
 </html>
-

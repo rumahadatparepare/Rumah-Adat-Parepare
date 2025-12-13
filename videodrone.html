@@ -16,8 +16,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       position: relative;
+      padding: 20px;
     }
 
     .back-button {
@@ -74,20 +75,34 @@
       height: 400px;
     }
 
-    video {
+    iframe {
       width: 100%;
       height: 100%;
       border-radius: 10px;
-      background-color: #000;
-      object-fit: cover;
+      border: none;
+    }
+
+    .yt-button {
+      background-color: #ff0000;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+      transition: 0.3s;
+    }
+
+    .yt-button:hover {
+      background-color: #cc0000;
+      box-shadow: 0 6px 16px rgba(255, 0, 0, 0.45);
+      transform: translateY(-2px);
     }
 
     footer {
       font-size: 0.85rem;
       color: #888;
-      text-align: center;
-      position: fixed;
-      bottom: 15px;
+      margin-top: 15px;
     }
   </style>
 </head>
@@ -99,19 +114,22 @@
 
   <p class="description">
     Video drone ini memperlihatkan tampilan udara dari Rumah Adat Bugis, yang dikenal dengan bentuk
-    rumah panggung, struktur kayu yang kuat, serta atap tinggi yang menjadi ciri khasnya. Melalui
-    sudut pandang dari atas, penonton dapat melihat lebih jelas proporsi bangunan, pola ruang, dan
-    detail arsitektur tradisional yang jarang terlihat secara langsung. Rekaman ini membantu
-    memberikan gambaran menyeluruh mengenai karakter dan nilai budaya Rumah Adat Bugis sebelum
-    melanjutkan ke tur virtual yang tersedia.
+    rumah panggung, struktur kayu yang kuat, serta atap tinggi yang menjadi ciri khasnya.
   </p>
 
-  <div class="model-container">
-    <video controls>
-      <source src="assets/video_drone/rumah_adat_bugis.mp4" type="video/mp4">
-      Browser Anda tidak mendukung pemutar video.
-    </video>
-  </div>
+<div class="model-container">
+  <iframe 
+    src="https://www.youtube.com/embed/P9R6MVo0MVQ"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- Tombol Tonton di YouTube -->
+<a class="yt-button" href="https://youtu.be/P9R6MVo0MVQ" target="_blank">
+  ▶ Tonton di YouTube
+</a>
 
   <footer>© 2025 Etnomatematika Rumah Adat Bugis</footer>
 
